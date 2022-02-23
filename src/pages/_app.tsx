@@ -1,6 +1,7 @@
 import React from 'react'
 
 import { NextPage } from 'next'
+import NextNProgress from 'nextjs-progressbar'
 
 import { Layout } from '~/components'
 import '~/styles/globals.scss'
@@ -14,9 +15,12 @@ function MyApp({ Component, pageProps }: Props) {
   const CustomLayout = Component.layout ? Component.layout : React.Fragment
 
   return (
-    <CustomLayout>
-      <Component {...pageProps} />
-    </CustomLayout>
+    <>
+      <NextNProgress color="#c2f8cb" stopDelayMs={200} />
+      <CustomLayout>
+        <Component {...pageProps} />
+      </CustomLayout>
+    </>
   )
 }
 
