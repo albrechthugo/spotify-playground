@@ -5,7 +5,7 @@ import { NextPage } from 'next'
 import NextNProgress from 'nextjs-progressbar'
 
 import { Layout } from '~/components'
-import '~/styles/globals.scss'
+import GlobalStyle from '~/styles/global.styles'
 
 type Props = {
   Component: NextPage & { layout: typeof Layout }
@@ -20,6 +20,7 @@ function MyApp({ Component, pageProps }: Props) {
       <NextNProgress color="#c2f8cb" stopDelayMs={200} />
       <CookiesProvider>
         <CustomLayout>
+          <GlobalStyle />
           <Component {...pageProps} />
         </CustomLayout>
       </CookiesProvider>
