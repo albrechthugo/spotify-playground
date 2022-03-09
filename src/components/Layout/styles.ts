@@ -1,4 +1,6 @@
-.gridContainer {
+import styled from 'styled-components'
+
+export const Main = styled.main`
   width: 100vw;
   height: 100vh;
   display: grid;
@@ -12,8 +14,8 @@
   @media screen and (max-width: 1266px) {
     grid-template-columns: 10rem auto;
   }
-}
+`
 
-.contentWrapper {
+export const ChildrenWrapper = styled.section`
   grid-area: main;
-}
+`
