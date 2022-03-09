@@ -1,4 +1,6 @@
-.container {
+import styled from 'styled-components'
+
+export const Header = styled.header`
   grid-area: header;
   position: sticky;
   top: 0;
@@ -8,17 +10,14 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-}
+`
 
-.title,
-.username {
+export const Title = styled.h1`
   font-size: 2rem;
-}
-
-.title {
   color: var(--color-primary);
-}
+`
 
-.username {
+export const Username = styled.span`
+  font-size: 2rem;
   font-weight: var(--weight-light);
-}
+`
