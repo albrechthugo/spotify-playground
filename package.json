@@ -10,10 +10,11 @@
     "test": "jest --collectCoverage"
   },
   "dependencies": {
-    "@types/styled-components": "^5.1.24",
+    "cookie": "^0.4.2",
     "next": "12.0.8",
     "nextjs-progressbar": "^0.0.13",
     "react": "17.0.2",
+    "react-cookie": "^4.1.1",
     "react-dom": "17.0.2",
     "react-query": "^3.34.12",
     "sass": "^1.49.0",
@@ -27,6 +28,7 @@
     "@types/jest": "^27.4.0",
     "@types/node": "17.0.12",
     "@types/react": "17.0.38",
+    "@types/styled-components": "^5.1.24",
     "@typescript-eslint/eslint-plugin": "^5.10.1",
     "@typescript-eslint/parser": "^5.10.1",
     "babel-jest": "^27.4.6",

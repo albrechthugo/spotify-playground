@@ -1,4 +1,5 @@
 import React from 'react'
+import { CookiesProvider } from 'react-cookie'
 
 import { NextPage } from 'next'
 import NextNProgress from 'nextjs-progressbar'
@@ -17,9 +18,11 @@ function MyApp({ Component, pageProps }: Props) {
   return (
     <>
       <NextNProgress color="#c2f8cb" stopDelayMs={200} />
-      <CustomLayout>
-        <Component {...pageProps} />
-      </CustomLayout>
+      <CookiesProvider>
+        <CustomLayout>
+          <Component {...pageProps} />
+        </CustomLayout>
+      </CookiesProvider>
     </>
   )
 }
