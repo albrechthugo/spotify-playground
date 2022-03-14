@@ -1,9 +1,22 @@
+import { useRouter } from 'next/router'
+
+import sideMenuContent from './content'
 import * as S from './styles'
 
 export const SideMenu = () => {
+  const { push } = useRouter()
+
   return (
-    <S.SideMenuWrapper>
-      <h1>sidemenu!</h1>
-    </S.SideMenuWrapper>
+    <S.Wrapper>
+      <ul>
+        {sideMenuContent.map(({ label, link }) => {
+          return (
+            <S.Link key={link} onClick={() => push(link)}>
+              {label}
+            </S.Link>
+          )
+        })}
+      </ul>
+    </S.Wrapper>
   )
 }
