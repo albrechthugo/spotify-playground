@@ -1,4 +1,5 @@
 import { CSSProperties, useEffect } from 'react'
+import { useCookies } from 'react-cookie'
 
 import type { NextPage } from 'next'
 import { useRouter } from 'next/router'
@@ -15,11 +16,18 @@ const styles: CSSProperties = {
 
 const Home: NextPage = () => {
   const { push, query } = useRouter()
+  const [, setCookie] = useCookies(['token'])
   const { auth_base_url, client_id, redirect_uri, scopes } = config
 
   useEffect(() => {
-    if (query?.code) push('/dashboard')
-  }, [push, query])
+    if (query?.code) {
+      setCookie('token', JSON.stringify(query.code), {
+        sameSite: true
+      })
+
+      push('/dashboard')
+    }
+  }, [push, setCookie, query])
 
   return (
     <main style={styles}>

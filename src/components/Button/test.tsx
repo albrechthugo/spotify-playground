@@ -1,6 +1,6 @@
 import { render, fireEvent } from '@testing-library/react'
 
-import { Button } from '~/components'
+import { Button } from '.'
 
 describe('<Button />', () => {
   it('should be created and render label', () => {
