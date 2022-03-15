@@ -1,9 +1,23 @@
 import styled from 'styled-components'
+import media from 'styled-media-query'
 
 export const Wrapper = styled.aside`
   grid-area: sidemenu;
   width: 100%;
   border-right: 1px solid var(--color-border);
+  overflow: hidden;
+
+  ${media.lessThan('medium')`
+    border-top: 1px solid var(--color-border);
+    border-right: none;
+
+    ul {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+  `}
 `
 
 export const Link = styled.li`

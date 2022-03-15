@@ -22,6 +22,26 @@ describe('<SideMenu />', () => {
     expect(screen.getAllByRole('listitem')[1]).toHaveTextContent(/playlists/i)
   })
 
+  it('should remove border-right and add border-top when device width is less than 768px', () => {
+    const { container } = render(
+      <RenderWithRouter>
+        <SideMenu />
+      </RenderWithRouter>
+    )
+
+    expect(container.querySelector('aside')).toHaveStyleRule(
+      'border-top',
+      '1px solid var(--color-border)',
+      { media: '(max-width:768px)' }
+    )
+
+    expect(container.querySelector('aside')).toHaveStyleRule(
+      'border-right',
+      'none',
+      { media: '(max-width:768px)' }
+    )
+  })
+
   it('should set background color to primary-hover and font colors to dark-bg when element had hover event', () => {
     render(
       <RenderWithRouter>
