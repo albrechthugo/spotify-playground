@@ -6,6 +6,7 @@ import { useRouter } from 'next/router'
 
 import { Button } from '~/components'
 import { config } from '~/core/config'
+import { useToken } from '~/hooks'
 
 const styles: CSSProperties = {
   height: '100%',
@@ -15,19 +16,21 @@ const styles: CSSProperties = {
 }
 
 const Home: NextPage = () => {
-  const { push, query } = useRouter()
+  const { push } = useRouter()
   const [, setCookie] = useCookies(['token'])
+  const { token } = useToken()
   const { auth_base_url, client_id, redirect_uri, scopes } = config
 
   useEffect(() => {
-    if (query?.code) {
-      setCookie('token', JSON.stringify(query.code), {
-        sameSite: true
+    if (token) {
+      setCookie('token', token, {
+        sameSite: true,
+        path: '/'
       })
 
       push('/dashboard')
     }
-  }, [push, setCookie, query])
+  }, [push, setCookie, token])
 
   return (
     <main style={styles}>
@@ -38,7 +41,7 @@ const Home: NextPage = () => {
             pathname: auth_base_url,
             query: {
               client_id,
-              response_type: 'code',
+              response_type: 'token',
               redirect_uri,
               scope: scopes
             }
