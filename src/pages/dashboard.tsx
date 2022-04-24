@@ -8,18 +8,24 @@ interface DashboardProps {
   artists: Artist[]
 }
 
+const USER_TOP_ARTISTS_ENDPOINT = `${config.spotify_base_url}/me/top/artists`
+
 export async function getServerSideProps({ req }: GetServerSidePropsContext) {
-  const response = await fetch(`${config.api_base_url}/user-top-artists`, {
-    headers: { token: req.cookies.token }
+  console.log(req.cookies.token)
+
+  const response = await fetch(USER_TOP_ARTISTS_ENDPOINT, {
+    method: 'GET',
+    headers: {
+      Authorization: `Bearer ${req.cookies.token}`,
+      'Content-Type': 'application/json'
+    }
   })
 
-  const {
-    data: { items }
-  } = await response.json()
+  const { items: artists } = await response.json()
 
   return {
     props: {
-      artists: items
+      artists
     }
   }
 }
