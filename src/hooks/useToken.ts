@@ -1,7 +1,7 @@
-import { useEffect, useRef } from 'react'
+import { MutableRefObject, useEffect, useRef } from 'react'
 
 interface UseTokenProps {
-  token: string
+  token: MutableRefObject<string>
 }
 
 export const useToken = (): UseTokenProps => {
@@ -13,6 +13,6 @@ export const useToken = (): UseTokenProps => {
   }, [])
 
   return {
-    token: token.current
+    token
   }
 }

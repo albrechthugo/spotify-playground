@@ -22,10 +22,11 @@ const Home: NextPage = () => {
   const { auth_base_url, client_id, redirect_uri, scopes } = config
 
   useEffect(() => {
-    if (token) {
-      setCookie('token', token, {
+    if (token.current && token.current !== '') {
+      setCookie('token', token.current, {
         sameSite: true,
-        path: '/'
+        path: '/',
+        maxAge: 60 * 60
       })
 
       push('/dashboard')
