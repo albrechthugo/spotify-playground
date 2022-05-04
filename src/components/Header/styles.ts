@@ -6,6 +6,8 @@ export const Header = styled.header`
   top: 0;
   height: 8rem;
   padding: 2rem;
+  background-color: var(--color-dark-bg);
+  z-index: 1;
   border-bottom: 0.1rem solid var(--color-border);
   display: flex;
   align-items: center;
