@@ -1,11 +1,15 @@
 import styled from 'styled-components'
 
+interface ArtistWrapperProps {
+  isLastArtist: boolean
+}
+
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
 `
 
-export const ArtistWrapper = styled.div<{ isLastArtist: boolean }>`
+export const ArtistWrapper = styled.div<ArtistWrapperProps>`
   display: flex;
   height: 14rem;
   width: 100%;
