@@ -1,4 +1,4 @@
-import { Config } from '~/types'
+import { Config } from '~/core/entities'
 
 export const config: Config = {
   client_id: process.env.NEXT_PUBLIC_CLIENT_ID as string,
