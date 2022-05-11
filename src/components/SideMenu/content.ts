@@ -1,4 +1,4 @@
-type SideMenuContentProps = {
+interface SideMenuContentProps {
   label: string
   link: string
 }

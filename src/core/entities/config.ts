@@ -1,4 +1,4 @@
-export type Config = {
+export interface Config {
   client_id: string
   redirect_uri: string
   auth_base_url: string
