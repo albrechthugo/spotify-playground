@@ -2,7 +2,8 @@ import styled from 'styled-components'
 
 export const Header = styled.header`
   grid-area: header;
-  position: sticky;
+  position: fixed;
+  width: 100%;
   top: 0;
   height: 8rem;
   padding: 2rem;
