@@ -7,12 +7,12 @@ import NextNProgress from 'nextjs-progressbar'
 import { Layout } from '~/components'
 import GlobalStyle from '~/styles/global.styles'
 
-type Props = {
+interface MyAppProps {
   Component: NextPage & { layout: typeof Layout }
   pageProps: any
 }
 
-function MyApp({ Component, pageProps }: Props) {
+function MyApp({ Component, pageProps }: MyAppProps) {
   const CustomLayout = Component.layout ? Component.layout : React.Fragment
 
   return (

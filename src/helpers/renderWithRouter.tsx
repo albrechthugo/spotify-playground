@@ -3,7 +3,7 @@ import React from 'react'
 import { RouterContext } from 'next/dist/shared/lib/router-context'
 import { NextRouter } from 'next/router'
 
-type RenderWithRouter = {
+interface RenderWithRouter {
   router?: Partial<NextRouter>
   children: React.ReactNode
 }

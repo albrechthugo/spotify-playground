@@ -1,6 +1,6 @@
 import * as S from './styles'
 
-type ButtonProps = {
+interface ButtonProps {
   label: string
   onClick: () => void
 }
