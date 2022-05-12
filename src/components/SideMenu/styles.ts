@@ -3,13 +3,25 @@ import media from 'styled-media-query'
 
 export const Wrapper = styled.aside`
   grid-area: sidemenu;
-  width: 100%;
+  position: fixed;
+  top: 8rem;
+  width: 28rem;
+  height: 100%;
   border-right: 1px solid var(--color-border);
-  overflow: hidden;
+  background-color: var(--color-dark-bg);
+  z-index: 1;
+
+  ${media.lessThan('large')`
+      width: 10rem;
+  `}
 
   ${media.lessThan('medium')`
     border-top: 1px solid var(--color-border);
     border-right: none;
+    height: 6rem;
+    width: 100%;
+    bottom: 0;
+    top: unset;
 
     ul {
       height: 100%;
