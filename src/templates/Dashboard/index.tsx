@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import { useRouter } from 'next/router'
 
 import { Artist } from '~/core/entities'
 
@@ -9,6 +10,8 @@ export interface DashboardProps {
 }
 
 const DashboardTemplate = ({ artists }: DashboardProps) => {
+  const { push } = useRouter()
+
   return (
     <>
       <S.Container>
@@ -17,7 +20,11 @@ const DashboardTemplate = ({ artists }: DashboardProps) => {
             const { url } = images[0]
 
             return (
-              <S.ArtistWrapper key={id} isLastArtist={i === artists.length - 1}>
+              <S.ArtistWrapper
+                key={id}
+                isLastArtist={i === artists.length - 1}
+                onClick={() => push(`/artist/${id}`)}
+              >
                 <div
                   style={{
                     borderRadius: '50%',
