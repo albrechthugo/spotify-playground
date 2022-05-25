@@ -1,12 +1,17 @@
 import { render, screen } from '@testing-library/react'
 
+import { RenderWithRouter } from '~/helpers'
 import { artistsMock } from '~/mocks'
 
 import DashboardTemplate from '.'
 
 describe('<DashboardTemplate />', () => {
   beforeEach(() => {
-    render(<DashboardTemplate artists={artistsMock} />)
+    render(
+      <RenderWithRouter>
+        <DashboardTemplate artists={artistsMock} />
+      </RenderWithRouter>
+    )
   })
 
   it.each(['Marília Mendonça', 'Maiara & Maraisa', 'Tribo da Periferia'])(
