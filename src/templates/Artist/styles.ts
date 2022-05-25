@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import media from 'styled-media-query'
 
 export const Container = styled.section`
   width: 100%;
@@ -6,28 +7,46 @@ export const Container = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
+`
+
+export const ArtistWrapper = styled.div`
+  width: 100%;
+  height: 26rem;
   padding: 2rem 4rem;
+
+  ${media.greaterThan('medium')`
+    border-bottom: 1px solid var(--color-border);
+  `}
 `
 
 export const MainInfoWrapper = styled.div`
   width: 100%;
-  height: 25%;
-  display: inherit;
+  display: flex;
   flex-direction: row;
+  align-items: center;
 `
 
 export const ImageWrapper = styled.div`
   overflow: hidden;
-  border-radius: 50%;
-  margin-right: 6rem;
-  min-width: 10rem;
-  min-height: 10rem;
-  width: 30rem;
-  height: 30rem;
+
+  ${media.lessThan('small')`
+    display: none;
+  `}
 `
 
 export const Name = styled.h1`
-  font-size: 8rem;
+  ${media.lessThan('small')`
+    font-size: 4rem;
+  `}
+
+  ${media.greaterThan('small')`
+    font-size: 6rem;
+    margin-left: 4rem;
+  `}
+
+  ${media.greaterThan('medium')`
+    font-size: 8rem;
+  `}
 `
 
 export const Followers = styled.span``
