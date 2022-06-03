@@ -12,19 +12,30 @@ export async function getServerSideProps({
 }: GetServerSidePropsContext) {
   const { id } = query
 
-  const response = await fetch(`${GET_ARTIST_ENDPOINT}/${id}`, {
+  const options: RequestInit = {
     method: 'GET',
     headers: {
       Authorization: `Bearer ${req.cookies.token}`,
       'Content-Type': 'application/json'
     }
-  })
+  }
 
-  const artist = await response.json()
+  const responses = await Promise.all([
+    fetch(`${GET_ARTIST_ENDPOINT}/${id}`, options),
+    fetch(`${GET_ARTIST_ENDPOINT}/${id}/top-tracks?market=BR`, options)
+  ])
+
+  const [artist, { tracks: topTracks }] = await Promise.all([
+    responses[0].json(),
+    responses[1].json()
+  ])
 
   return {
     props: {
-      artist
+      artist: {
+        ...artist,
+        topTracks
+      }
     }
   }
 }

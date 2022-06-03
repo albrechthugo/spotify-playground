@@ -8,4 +8,14 @@ export interface Artist {
   images: Image[]
   name: string
   popularity: number
+  topTracks?: TopTracks[]
+}
+
+export interface TopTracks {
+  artists: Pick<Artist, 'id' | 'name'>[]
+  duration_ms: number
+  external_urls: { spotify: string }
+  id: string
+  name: string
+  preview_url: string
 }

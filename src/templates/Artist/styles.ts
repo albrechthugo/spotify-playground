@@ -11,10 +11,10 @@ export const Container = styled.section`
 
 export const ArtistWrapper = styled.div`
   width: 100%;
-  height: 26rem;
   padding: 2rem 4rem;
 
   ${media.greaterThan('medium')`
+    height: 26rem;
     border-bottom: 1px solid var(--color-border);
   `}
 `
@@ -27,8 +27,6 @@ export const MainInfoWrapper = styled.div`
 `
 
 export const ImageWrapper = styled.div`
-  overflow: hidden;
-
   ${media.lessThan('small')`
     display: none;
   `}
@@ -49,6 +47,18 @@ export const Name = styled.h1`
   `}
 `
 
-export const Followers = styled.span``
+export const TopTracksWrapper = styled.section`
+  width: 100%;
+  height: 100%;
+  padding: 2rem 4rem;
+`
 
-export const GenresWrapper = styled.div``
+export const TopTracksTitle = styled.h2`
+  ${media.lessThan('medium')`
+    font-size: 2rem;
+  `}
+
+  ${media.greaterThan('medium')`
+    font-size: 4rem;
+  `}
+`
