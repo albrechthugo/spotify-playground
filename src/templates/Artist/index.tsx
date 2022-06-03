@@ -1,5 +1,6 @@
 import Image from 'next/image'
 
+import { TopTracks } from '~/components'
 import { Artist } from '~/core/entities'
 
 import * as S from './styles'
@@ -26,6 +27,7 @@ const ArtistTemplate = ({
 
       <S.TopTracksWrapper>
         <S.TopTracksTitle>Melhores Faixas</S.TopTracksTitle>
+        <TopTracks tracks={topTracks} />
       </S.TopTracksWrapper>
     </S.Container>
   )

@@ -54,6 +54,8 @@ export const TopTracksWrapper = styled.section`
 `
 
 export const TopTracksTitle = styled.h2`
+  margin-bottom: 2rem;
+
   ${media.lessThan('medium')`
     font-size: 2rem;
   `}
