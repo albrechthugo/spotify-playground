@@ -5,6 +5,7 @@ import { NextPage } from 'next'
 import NextNProgress from 'nextjs-progressbar'
 
 import { Layout } from '~/components'
+import UserProvider from '~/contexts/UserContext'
 import GlobalStyle from '~/styles/global.styles'
 
 interface MyAppProps {
@@ -19,10 +20,12 @@ function MyApp({ Component, pageProps }: MyAppProps) {
     <>
       <NextNProgress color="#c2f8cb" stopDelayMs={200} />
       <CookiesProvider>
-        <CustomLayout>
-          <GlobalStyle />
-          <Component {...pageProps} />
-        </CustomLayout>
+        <UserProvider>
+          <CustomLayout>
+            <GlobalStyle />
+            <Component {...pageProps} />
+          </CustomLayout>
+        </UserProvider>
       </CookiesProvider>
     </>
   )
