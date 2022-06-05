@@ -10,10 +10,12 @@ describe('<ArtistTemplate />', () => {
     render(<ArtistTemplate artist={artistsMock[0]} />)
   })
 
-  it('should render template with artist that was received from props', () => {
+  it('should render template with artist that was received from props with top tracks title', () => {
     expect(
       screen.getByRole('heading', { name: /marília mendonça/i })
     ).toBeInTheDocument()
+
+    expect(screen.getByRole('heading', { level: 2, name: /melhores faixas/i }))
   })
 
   it('should apply correct css props in differents device width', () => {

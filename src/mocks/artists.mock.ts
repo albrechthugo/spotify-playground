@@ -1,5 +1,7 @@
 import { Artist } from '~/core/entities'
 
+import { topTracksMock } from './artist-top-tracks.mock'
+
 export const artistsMock: Artist[] = [
   {
     followers: {
@@ -26,7 +28,8 @@ export const artistsMock: Artist[] = [
       }
     ],
     name: 'Marília Mendonça',
-    popularity: 88
+    popularity: 88,
+    topTracks: topTracksMock
   },
   {
     followers: {
@@ -53,7 +56,8 @@ export const artistsMock: Artist[] = [
       }
     ],
     name: 'Maiara & Maraisa',
-    popularity: 82
+    popularity: 82,
+    topTracks: topTracksMock
   },
   {
     followers: {
@@ -80,6 +84,7 @@ export const artistsMock: Artist[] = [
       }
     ],
     name: 'Tribo da Periferia',
-    popularity: 69
+    popularity: 69,
+    topTracks: topTracksMock
   }
 ]
