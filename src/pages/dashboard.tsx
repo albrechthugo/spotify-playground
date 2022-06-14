@@ -1,3 +1,5 @@
+import { useCallback, useEffect } from 'react'
+
 import { GetServerSidePropsContext } from 'next'
 
 import { Layout } from '~/components'
@@ -40,7 +42,9 @@ export async function getServerSideProps({ req }: GetServerSidePropsContext) {
 const Dashboard = ({ artists, user }: DashboardProps & { user: string }) => {
   const { setCurrentUser } = useUser()
 
-  setCurrentUser(user)
+  useEffect(() => {
+    setCurrentUser(user)
+  }, [user, setCurrentUser])
 
   return <DashboardTemplate artists={artists} />
 }
