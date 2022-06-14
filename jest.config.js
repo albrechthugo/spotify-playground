@@ -3,7 +3,8 @@ module.exports = {
     '**/*.tsx',
     '!**/*.d.ts',
     '!**/node_modules/**',
-    '!**src/pages/**'
+    '!**src/pages/**',
+    '!**src/helpers/**'
   ],
   moduleNameMapper: {
     // Handle CSS imports (with CSS modules)
