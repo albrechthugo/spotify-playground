@@ -18,6 +18,12 @@ export const Header = styled.header`
 export const Title = styled.h1`
   font-size: 2rem;
   color: var(--color-primary);
+  cursor: pointer;
+  transition: 0.4s ease-in;
+
+  &:hover {
+    color: var(--color-white);
+  }
 `
 
 export const Username = styled.span`

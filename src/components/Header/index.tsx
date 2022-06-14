@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 import { useUser } from '~/hooks'
 
 import * as S from './styles'
@@ -9,7 +11,9 @@ export const Header = () => {
 
   return (
     <S.Header>
-      <S.Title>Spotify Playground</S.Title>
+      <Link href="/" passHref>
+        <S.Title>Spotify Playground</S.Title>
+      </Link>
       <S.Username>Bem vindo, {firstName}</S.Username>
     </S.Header>
   )

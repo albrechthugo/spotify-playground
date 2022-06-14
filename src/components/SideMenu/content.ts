@@ -4,7 +4,6 @@ interface SideMenuContentProps {
 }
 
 const sideMenuContent: SideMenuContentProps[] = [
-  { label: 'Seguidores', link: '/followers' },
   { label: 'Playlists', link: '/playlists' }
 ]
 
