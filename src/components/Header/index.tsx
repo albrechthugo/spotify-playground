@@ -11,7 +11,7 @@ export const Header = () => {
 
   return (
     <S.Header>
-      <Link href="/" passHref>
+      <Link href="/dashboard" passHref>
         <S.Title>Spotify Playground</S.Title>
       </Link>
       <S.Username>Bem vindo, {firstName}</S.Username>
