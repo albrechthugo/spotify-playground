@@ -7,6 +7,7 @@ const GlobalStyle = createGlobalStyle`
     --color-white: #ffffff;
     --color-primary: #c2f8cb;
     --color-primary-hover: rgba(194, 248, 203, 0.8);
+    --color-primary-active: #D9FFDF;
     --color-shadow-overlay: rgba(46, 46, 46, 0.1);
 
     --weight-light: 100;

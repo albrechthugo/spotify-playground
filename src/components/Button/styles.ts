@@ -17,5 +17,11 @@ export const Button = styled.button`
 
   &:hover {
     background-color: var(--color-primary-hover);
+    box-shadow: 0 0 0.2rem var(--color-primary-hover);
+  }
+
+  &:active {
+    background-color: var(--color-primary-active);
+    box-shadow: 0 0 0.2rem var(--color-primary-active);
   }
 `
