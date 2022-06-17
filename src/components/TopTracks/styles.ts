@@ -16,7 +16,7 @@ export const Track = styled.li`
   transition: 0.2s ease-in-out;
 
   &:hover {
-    background-color: var(--color-border);
+    background-color: var(--color-shadow-overlay);
   }
 `
 
