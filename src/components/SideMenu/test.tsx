@@ -18,7 +18,7 @@ describe('<SideMenu />', () => {
       'sidemenu'
     )
     expect(screen.getByRole('list')).toBeInTheDocument()
-    expect(screen.getAllByRole('listitem')[0]).toHaveTextContent(/playlists/i)
+    expect(screen.getAllByRole('listitem')[0]).toHaveTextContent(/dashboard/i)
   })
 
   it('should remove border-right and add border-top when device width is less than 768px', () => {
@@ -84,6 +84,6 @@ describe('<SideMenu />', () => {
       fireEvent.click(getAllByRole('listitem')[0])
     })
 
-    expect(push).toHaveBeenCalledWith('/playlists')
+    expect(push).toHaveBeenCalledWith('/dashboard')
   })
 })
