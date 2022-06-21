@@ -3,9 +3,15 @@ import { IconButton } from '@mui/material'
 
 import * as S from './styles'
 
-export const UnfollowPlaylistButton = () => {
+interface UnfollowPlaylistButtonProps {
+  handleUnfollow: () => void
+}
+
+export const UnfollowPlaylistButton = ({
+  handleUnfollow
+}: UnfollowPlaylistButtonProps) => {
   return (
-    <S.Container>
+    <S.Container onClick={handleUnfollow}>
       <IconButton aria-label="Deixar de seguir playlist">
         <Close color="primary" fontSize="large" />
       </IconButton>
