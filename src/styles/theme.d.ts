@@ -3,11 +3,17 @@ declare module '@material-ui/core/styles' {
     pallete: {
       primary: string
     }
+    typography: {
+      fontFamily: string
+    }
   }
 
   interface ThemeOptions {
     pallete?: {
       primary?: string
+    }
+    typography?: {
+      fontFamily?: string
     }
   }
 }
