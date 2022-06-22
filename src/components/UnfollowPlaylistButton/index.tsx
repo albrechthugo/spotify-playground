@@ -1,20 +1,45 @@
+import { useState } from 'react'
+
 import { Close } from '@mui/icons-material'
 import { IconButton } from '@mui/material'
 
+import { ConfirmUnfollowPlaylist } from '../ConfirmUnfollowPlaylist'
 import * as S from './styles'
 
 interface UnfollowPlaylistButtonProps {
-  handleUnfollow: () => void
+  handleUnfollow: () => Promise<void>
+  playlistName: string
 }
 
 export const UnfollowPlaylistButton = ({
-  handleUnfollow
+  handleUnfollow,
+  playlistName
 }: UnfollowPlaylistButtonProps) => {
+  const [isOpen, setIsOpen] = useState(false)
+
+  const handleOpen = () => {
+    setIsOpen(true)
+  }
+
+  const handleClose = async (hasConfirmation = false) => {
+    if (hasConfirmation) await handleUnfollow()
+
+    setIsOpen(false)
+  }
+
   return (
-    <S.Container onClick={handleUnfollow}>
-      <IconButton aria-label="Deixar de seguir playlist">
-        <Close color="primary" fontSize="large" />
-      </IconButton>
-    </S.Container>
+    <>
+      <S.Container onClick={handleOpen}>
+        <IconButton aria-label="Deixar de seguir playlist">
+          <Close color="primary" fontSize="large" />
+        </IconButton>
+      </S.Container>
+
+      <ConfirmUnfollowPlaylist
+        isOpen={isOpen}
+        handleClose={handleClose}
+        playlistName={playlistName}
+      />
+    </>
   )
 }

@@ -15,7 +15,7 @@ export const PlaylistItem = ({
   playlist: { name, owner, id },
   applyBackgroundColor
 }: PlaylistItemProps) => {
-  const [token] = useCookies(['token'])
+  const [{ token }] = useCookies(['token'])
   const { display_name: ownerName } = owner
 
   const handleUnfollow = async () => {
@@ -33,7 +33,10 @@ export const PlaylistItem = ({
   return (
     <S.Playlist applyBackgroundColor={applyBackgroundColor}>
       <S.Info>
-        <UnfollowPlaylistButton handleUnfollow={handleUnfollow} />
+        <UnfollowPlaylistButton
+          handleUnfollow={handleUnfollow}
+          playlistName={name}
+        />
 
         <S.Description>
           <S.Name>{name}</S.Name>
