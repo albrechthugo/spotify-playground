@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useState } from 'react'
 import { useCookies } from 'react-cookie'
 
 import { GetServerSidePropsContext } from 'next'
