@@ -1,8 +1,4 @@
-import React, { createContext, useState } from 'react'
-
-interface Props {
-  children: React.ReactNode
-}
+import React, { createContext, PropsWithChildren, useState } from 'react'
 
 interface UserContext {
   user: string
@@ -16,7 +12,7 @@ const DEFAULT_VALUE: UserContext = {
 
 export const UserContext = createContext<UserContext>(DEFAULT_VALUE)
 
-const UserProvider = ({ children }: Props) => {
+const UserProvider = ({ children }: PropsWithChildren<any>) => {
   const [user, setUser] = useState(DEFAULT_VALUE.user)
 
   return (

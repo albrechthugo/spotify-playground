@@ -1,14 +1,12 @@
-import React from 'react'
+import React, { PropsWithChildren } from 'react'
 
 import { RouterContext } from 'next/dist/shared/lib/router-context'
 import { NextRouter } from 'next/router'
 
-interface RenderWithRouter {
-  router?: Partial<NextRouter>
-  children: React.ReactNode
-}
-
-export function RenderWithRouter({ children, router = {} }: RenderWithRouter) {
+export function RenderWithRouter({
+  children,
+  router = {}
+}: PropsWithChildren<{ router: Partial<NextRouter> }>) {
   const {
     route = '',
     pathname = '',

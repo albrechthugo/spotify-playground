@@ -1,12 +1,10 @@
+import { PropsWithChildren } from 'react'
+
 import { Header } from '../Header'
 import { SideMenu } from '../SideMenu'
 import * as S from './styles'
 
-interface LayoutProps {
-  children: React.ReactNode
-}
-
-export const Layout = ({ children }: LayoutProps) => {
+export const Layout = ({ children }: PropsWithChildren<any>) => {
   return (
     <S.Main>
       <Header />
