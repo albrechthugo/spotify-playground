@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { useCookies } from 'react-cookie'
 
 import { GetServerSidePropsContext } from 'next'
@@ -35,7 +35,7 @@ const Playlists = ({ playlists }: PlaylistsProps) => {
   const [currentPlaylists, setCurrentPlaylists] =
     useState<Playlist[]>(playlists)
 
-  const updatePlaylistsHandler = async () => {
+  const updatePlaylistsHandler = useCallback(async () => {
     const options = {
       method: 'GET',
       headers: {
@@ -51,7 +51,7 @@ const Playlists = ({ playlists }: PlaylistsProps) => {
     const { items: playlists } = await response.json()
 
     setCurrentPlaylists(playlists)
-  }
+  }, [token])
 
   return (
     <PlaylistsTemplate

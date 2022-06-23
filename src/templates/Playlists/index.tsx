@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 
 import { PlaylistItem } from '~/components'
 import { Playlist } from '~/core/entities/playlist'
@@ -10,22 +10,21 @@ export interface PlaylistsProps {
   updatePlaylistsHandler: () => Promise<void>
 }
 
-const PlaylistsTemplate = ({
-  playlists,
-  updatePlaylistsHandler
-}: PlaylistsProps) => {
-  return (
-    <S.Wrapper>
-      {playlists.map((playlist, i) => (
-        <PlaylistItem
-          key={playlist.id}
-          playlist={playlist}
-          applyBackgroundColor={i % 2 === 0}
-          updatePlaylistsHandler={updatePlaylistsHandler}
-        />
-      ))}
-    </S.Wrapper>
-  )
-}
+const PlaylistsTemplate = memo(
+  ({ playlists, updatePlaylistsHandler }: PlaylistsProps) => {
+    return (
+      <S.Wrapper>
+        {playlists.map((playlist, i) => (
+          <PlaylistItem
+            key={playlist.id}
+            playlist={playlist}
+            applyBackgroundColor={i % 2 === 0}
+            updatePlaylistsHandler={updatePlaylistsHandler}
+          />
+        ))}
+      </S.Wrapper>
+    )
+  }
+)
 
 export default PlaylistsTemplate

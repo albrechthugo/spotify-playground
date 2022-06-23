@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { memo, useCallback, useEffect, useState } from 'react'
 
 import { Close } from '@mui/icons-material'
 import { IconButton } from '@mui/material'
@@ -11,39 +11,41 @@ interface UnfollowPlaylistButtonProps {
   playlistName: string
 }
 
-export const UnfollowPlaylistButton = ({
-  handleUnfollow,
-  playlistName
-}: UnfollowPlaylistButtonProps) => {
-  const [isOpen, setIsOpen] = useState(false)
+export const UnfollowPlaylistButton = memo(
+  ({ handleUnfollow, playlistName }: UnfollowPlaylistButtonProps) => {
+    const [isOpen, setIsOpen] = useState(false)
 
-  const handleOpen = () => {
-    setIsOpen(true)
+    const handleOpen = () => {
+      setIsOpen(true)
+    }
+
+    const handleClose = useCallback(
+      async (hasConfirmation = false) => {
+        if (hasConfirmation) await handleUnfollow()
+
+        setIsOpen(false)
+      },
+      [handleUnfollow]
+    )
+
+    useEffect(() => {
+      return () => {}
+    }, [])
+
+    return (
+      <>
+        <S.Container onClick={handleOpen}>
+          <IconButton aria-label="Deixar de seguir playlist">
+            <Close color="primary" fontSize="large" />
+          </IconButton>
+        </S.Container>
+
+        <ConfirmUnfollowPlaylist
+          isOpen={isOpen}
+          handleClose={handleClose}
+          playlistName={playlistName}
+        />
+      </>
+    )
   }
-
-  const handleClose = async (hasConfirmation = false) => {
-    if (hasConfirmation) await handleUnfollow()
-
-    setIsOpen(false)
-  }
-
-  useEffect(() => {
-    return () => {}
-  }, [])
-
-  return (
-    <>
-      <S.Container onClick={handleOpen}>
-        <IconButton aria-label="Deixar de seguir playlist">
-          <Close color="primary" fontSize="large" />
-        </IconButton>
-      </S.Container>
-
-      <ConfirmUnfollowPlaylist
-        isOpen={isOpen}
-        handleClose={handleClose}
-        playlistName={playlistName}
-      />
-    </>
-  )
-}
+)
