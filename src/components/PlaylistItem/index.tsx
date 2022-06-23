@@ -9,11 +9,13 @@ import * as S from './styles'
 interface PlaylistItemProps {
   playlist: Playlist
   applyBackgroundColor: boolean
+  updatePlaylistsHandler: () => Promise<void>
 }
 
 export const PlaylistItem = ({
   playlist: { name, owner, id },
-  applyBackgroundColor
+  applyBackgroundColor,
+  updatePlaylistsHandler
 }: PlaylistItemProps) => {
   const [{ token }] = useCookies(['token'])
   const { display_name: ownerName } = owner
@@ -28,6 +30,8 @@ export const PlaylistItem = ({
     }
 
     await fetch(UNFOLLOW_PLAYLIST_ENDPOINT, options)
+
+    await updatePlaylistsHandler()
   }
 
   return (

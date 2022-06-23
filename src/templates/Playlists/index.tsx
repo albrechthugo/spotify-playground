@@ -1,3 +1,5 @@
+import React from 'react'
+
 import { PlaylistItem } from '~/components'
 import { Playlist } from '~/core/entities/playlist'
 
@@ -5,9 +7,13 @@ import * as S from './styles'
 
 export interface PlaylistsProps {
   playlists: Playlist[]
+  updatePlaylistsHandler: () => Promise<void>
 }
 
-const PlaylistsTemplate = ({ playlists }: PlaylistsProps) => {
+const PlaylistsTemplate = ({
+  playlists,
+  updatePlaylistsHandler
+}: PlaylistsProps) => {
   return (
     <S.Wrapper>
       {playlists.map((playlist, i) => (
@@ -15,6 +21,7 @@ const PlaylistsTemplate = ({ playlists }: PlaylistsProps) => {
           key={playlist.id}
           playlist={playlist}
           applyBackgroundColor={i % 2 === 0}
+          updatePlaylistsHandler={updatePlaylistsHandler}
         />
       ))}
     </S.Wrapper>

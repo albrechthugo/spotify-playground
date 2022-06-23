@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { Close } from '@mui/icons-material'
 import { IconButton } from '@mui/material'
@@ -26,6 +26,10 @@ export const UnfollowPlaylistButton = ({
 
     setIsOpen(false)
   }
+
+  useEffect(() => {
+    return () => {}
+  }, [])
 
   return (
     <>
