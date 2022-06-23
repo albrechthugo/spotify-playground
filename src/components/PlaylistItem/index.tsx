@@ -4,6 +4,7 @@ import { useCookies } from 'react-cookie'
 import { UnfollowPlaylistButton } from '~/components'
 import { config } from '~/core/config'
 import { Playlist } from '~/core/entities'
+import { unfollowPlaylist } from '~/lib'
 
 import * as S from './styles'
 
@@ -23,15 +24,7 @@ export const PlaylistItem = memo(
     const { display_name: ownerName } = owner
 
     const handleUnfollow = useCallback(async () => {
-      const UNFOLLOW_PLAYLIST_ENDPOINT = `${config.spotify_base_url}/playlists/${id}/followers`
-      const options: RequestInit = {
-        method: 'DELETE',
-        headers: {
-          Authorization: `Bearer ${token}`
-        }
-      }
-
-      await fetch(UNFOLLOW_PLAYLIST_ENDPOINT, options)
+      await unfollowPlaylist(id, token)
 
       await updatePlaylistsHandler()
     }, [id, token, updatePlaylistsHandler])
