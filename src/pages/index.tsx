@@ -1,4 +1,4 @@
-import { CSSProperties, useEffect } from 'react'
+import { useEffect } from 'react'
 import { useCookies } from 'react-cookie'
 
 import type { NextPage } from 'next'
@@ -7,13 +7,6 @@ import { useRouter } from 'next/router'
 import { Button } from '~/components'
 import { config } from '~/core/config'
 import { useToken } from '~/hooks'
-
-const styles: CSSProperties = {
-  height: '100%',
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'center'
-}
 
 const Home: NextPage = () => {
   const { push } = useRouter()
@@ -34,7 +27,14 @@ const Home: NextPage = () => {
   }, [push, setCookie, token])
 
   return (
-    <main style={styles}>
+    <main
+      style={{
+        height: '100%',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
+      }}
+    >
       <Button
         label="Entrar com Spotify"
         onClick={() =>

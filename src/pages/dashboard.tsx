@@ -10,8 +10,14 @@ import DashboardTemplate from '~/templates/Dashboard'
 
 export async function getServerSideProps({ req }: GetServerSidePropsContext) {
   const token = req.cookies.token
-  const user = await getUserInfo(token)
-  const artists = await getTopArtists(token)
+
+  const responses = await Promise.all([
+    await getUserInfo(token),
+    await getTopArtists(token)
+  ])
+
+  const user = responses[0]
+  const artists = responses[1]
 
   return {
     props: {
