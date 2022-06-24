@@ -2,7 +2,6 @@ import { memo, useCallback } from 'react'
 import { useCookies } from 'react-cookie'
 
 import { UnfollowPlaylistButton } from '~/components'
-import { config } from '~/core/config'
 import { Playlist } from '~/core/entities'
 import { unfollowPlaylist } from '~/lib'
 
