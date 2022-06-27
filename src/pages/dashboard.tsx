@@ -12,8 +12,8 @@ export async function getServerSideProps({ req }: GetServerSidePropsContext) {
   const token = req.cookies.token
 
   const responses = await Promise.all([
-    await getUserInfo(token),
-    await getTopArtists(token)
+    getUserInfo(token),
+    getTopArtists(token)
   ])
 
   const user = responses[0]
