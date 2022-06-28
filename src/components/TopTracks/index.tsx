@@ -1,4 +1,4 @@
-import { TopTrack } from '~/core/entities'
+import { TopTrack } from '~/types'
 
 import * as S from './styles'
 

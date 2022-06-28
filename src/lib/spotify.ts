@@ -1,6 +1,6 @@
 import { config } from '~/core/config'
-import { Artist, Playlist } from '~/core/entities'
 import { getRequestInit } from '~/helpers'
+import { Artist, Playlist } from '~/types'
 
 const QUERY_PARAMS = new URLSearchParams({ limit: '10' })
 const USER_ENDPOINT = `${config.spotify_base_url}/me`

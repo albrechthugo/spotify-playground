@@ -1,7 +1,7 @@
 import React, { memo } from 'react'
 
 import { PlaylistItem } from '~/components'
-import { Playlist } from '~/core/entities/playlist'
+import { Playlist } from '~/types/playlist'
 
 import * as S from './styles'
 

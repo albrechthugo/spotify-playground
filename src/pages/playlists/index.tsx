@@ -4,9 +4,9 @@ import { useCookies } from 'react-cookie'
 import { GetServerSidePropsContext } from 'next'
 
 import { Layout } from '~/components'
-import { Playlist } from '~/core/entities'
 import { getPlaylists } from '~/lib'
 import PlaylistsTemplate, { PlaylistsProps } from '~/templates/Playlists'
+import { Playlist } from '~/types'
 
 export async function getServerSideProps({ req }: GetServerSidePropsContext) {
   const playlists = await getPlaylists(req.cookies.token)

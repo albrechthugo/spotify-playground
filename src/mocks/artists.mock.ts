@@ -1,4 +1,4 @@
-import { Artist } from '~/core/entities'
+import { Artist } from '~/types'
 
 import { topTracksMock } from './artist-top-tracks.mock'
 

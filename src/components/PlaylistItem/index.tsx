@@ -2,8 +2,8 @@ import { memo, useCallback } from 'react'
 import { useCookies } from 'react-cookie'
 
 import { UnfollowPlaylistButton } from '~/components'
-import { Playlist } from '~/core/entities'
 import { unfollowPlaylist } from '~/lib'
+import { Playlist } from '~/types'
 
 import * as S from './styles'
 

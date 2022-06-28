@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 
-import { Artist } from '~/core/entities'
+import { Artist } from '~/types'
 
 import * as S from './styles'
 
