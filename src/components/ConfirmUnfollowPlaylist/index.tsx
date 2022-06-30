@@ -29,7 +29,7 @@ export const ConfirmUnfollowPlaylist = forwardRef(
       async (hasConfirmation = false) => {
         if (hasConfirmation) {
           await unfollowPlaylist(playlist.id, token)
-          await updatePlaylists(token)
+          await updatePlaylists()
         }
 
         setIsOpen(false)
