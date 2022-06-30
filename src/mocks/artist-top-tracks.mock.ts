@@ -1,4 +1,4 @@
-import { TopTrack } from '~/core/entities'
+import { TopTrack } from '~/types'
 
 export const topTracksMock: TopTrack[] = [
   {

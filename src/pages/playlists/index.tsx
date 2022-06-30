@@ -1,39 +1,26 @@
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect } from 'react'
 import { useCookies } from 'react-cookie'
 
-import { GetServerSidePropsContext } from 'next'
-
 import { Layout } from '~/components'
-import { Playlist } from '~/core/entities'
-import { getPlaylists } from '~/lib'
-import PlaylistsTemplate, { PlaylistsProps } from '~/templates/Playlists'
+import { usePlaylists } from '~/hooks'
+import PlaylistsTemplate from '~/templates/Playlists'
 
-export async function getServerSideProps({ req }: GetServerSidePropsContext) {
-  const playlists = await getPlaylists(req.cookies.token)
-
-  return {
-    props: {
-      playlists
-    }
-  }
-}
-
-const Playlists = ({ playlists }: PlaylistsProps) => {
+const Playlists = () => {
   const [{ token }] = useCookies(['token'])
-  const [currentPlaylists, setCurrentPlaylists] =
-    useState<Playlist[]>(playlists)
+  const { playlists, fetch } = usePlaylists(({ playlists, fetch }) => ({
+    playlists,
+    fetch
+  }))
 
-  const updatePlaylistsHandler = useCallback(async () => {
-    const playlists = await getPlaylists(token)
-    setCurrentPlaylists(playlists)
-  }, [token])
+  const updatePlaylists = useCallback(async () => {
+    await fetch(token)
+  }, [fetch, token])
 
-  return (
-    <PlaylistsTemplate
-      playlists={currentPlaylists}
-      updatePlaylistsHandler={updatePlaylistsHandler}
-    />
-  )
+  useEffect(() => {
+    updatePlaylists()
+  }, [updatePlaylists])
+
+  return <PlaylistsTemplate playlists={playlists} />
 }
 
 Playlists.layout = Layout

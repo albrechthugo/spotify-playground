@@ -1,4 +1,4 @@
-import { Playlist } from '~/core/entities'
+import { Playlist } from '~/types'
 
 export const playlistsMock: Playlist[] = [
   {

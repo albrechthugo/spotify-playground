@@ -1,47 +1,47 @@
-import { memo, useCallback } from 'react'
-import { useCookies } from 'react-cookie'
+import { useCallback, useRef } from 'react'
 
-import { UnfollowPlaylistButton } from '~/components'
-import { Playlist } from '~/core/entities'
-import { unfollowPlaylist } from '~/lib'
+import { ConfirmUnfollowPlaylist, UnfollowPlaylistButton } from '~/components'
+import { Playlist } from '~/types'
 
 import * as S from './styles'
 
 interface PlaylistItemProps {
   playlist: Playlist
   applyBackgroundColor: boolean
-  updatePlaylistsHandler: () => Promise<void>
 }
 
-export const PlaylistItem = memo(
-  ({
-    playlist: { name, owner, id },
-    applyBackgroundColor,
-    updatePlaylistsHandler
-  }: PlaylistItemProps) => {
-    const [{ token }] = useCookies(['token'])
-    const { display_name: ownerName } = owner
+export const PlaylistItem = ({
+  playlist,
+  applyBackgroundColor
+}: PlaylistItemProps) => {
+  const { display_name: ownerName } = playlist.owner
 
-    const handleUnfollow = useCallback(async () => {
-      await unfollowPlaylist(id, token)
+  const confirmUnfollowPlaylistRef = useRef<{
+    handleOpen: () => void
+  }>(null)
 
-      await updatePlaylistsHandler()
-    }, [id, token, updatePlaylistsHandler])
+  const handleOpen = useCallback(
+    () => confirmUnfollowPlaylistRef.current?.handleOpen(),
+    []
+  )
 
-    return (
+  return (
+    <>
       <S.Playlist applyBackgroundColor={applyBackgroundColor}>
         <S.Info>
-          <UnfollowPlaylistButton
-            handleUnfollow={handleUnfollow}
-            playlistName={name}
-          />
+          <UnfollowPlaylistButton handleClick={handleOpen} />
 
           <S.Description>
-            <S.Name>{name}</S.Name>
+            <S.Name>{playlist.name}</S.Name>
             <S.Owner>Por: {ownerName}</S.Owner>
           </S.Description>
         </S.Info>
       </S.Playlist>
-    )
-  }
-)
+
+      <ConfirmUnfollowPlaylist
+        ref={confirmUnfollowPlaylistRef}
+        playlist={playlist}
+      />
+    </>
+  )
+}
