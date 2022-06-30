@@ -1,9 +1,6 @@
-import { useCallback } from 'react'
-import { useCookies } from 'react-cookie'
+import { useCallback, useRef } from 'react'
 
-import { UnfollowPlaylistButton } from '~/components'
-import { usePlaylists } from '~/hooks'
-import { unfollowPlaylist } from '~/lib'
+import { ConfirmUnfollowPlaylist, UnfollowPlaylistButton } from '~/components'
 import { Playlist } from '~/types'
 
 import * as S from './styles'
@@ -14,32 +11,37 @@ interface PlaylistItemProps {
 }
 
 export const PlaylistItem = ({
-  playlist: { name, owner, id },
+  playlist,
   applyBackgroundColor
 }: PlaylistItemProps) => {
-  const [{ token }] = useCookies(['token'])
-  const { display_name: ownerName } = owner
-  const updatePlaylists = usePlaylists(({ fetch }) => fetch)
+  const { display_name: ownerName } = playlist.owner
 
-  const handleUnfollow = useCallback(async () => {
-    await unfollowPlaylist(id, token)
+  const confirmUnfollowPlaylistRef = useRef<{
+    handleOpen: () => void
+  }>(null)
 
-    await updatePlaylists(token)
-  }, [id, token, updatePlaylists])
+  const handleOpen = useCallback(
+    () => confirmUnfollowPlaylistRef.current?.handleOpen(),
+    []
+  )
 
   return (
-    <S.Playlist applyBackgroundColor={applyBackgroundColor}>
-      <S.Info>
-        <UnfollowPlaylistButton
-          handleUnfollow={handleUnfollow}
-          playlistName={name}
-        />
+    <>
+      <S.Playlist applyBackgroundColor={applyBackgroundColor}>
+        <S.Info>
+          <UnfollowPlaylistButton handleClick={handleOpen} />
 
-        <S.Description>
-          <S.Name>{name}</S.Name>
-          <S.Owner>Por: {ownerName}</S.Owner>
-        </S.Description>
-      </S.Info>
-    </S.Playlist>
+          <S.Description>
+            <S.Name>{playlist.name}</S.Name>
+            <S.Owner>Por: {ownerName}</S.Owner>
+          </S.Description>
+        </S.Info>
+      </S.Playlist>
+
+      <ConfirmUnfollowPlaylist
+        ref={confirmUnfollowPlaylistRef}
+        playlist={playlist}
+      />
+    </>
   )
 }

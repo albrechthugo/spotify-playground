@@ -1,4 +1,5 @@
-import { memo } from 'react'
+import { forwardRef, useCallback, useImperativeHandle, useState } from 'react'
+import { useCookies } from 'react-cookie'
 
 import {
   Button,
@@ -8,14 +9,43 @@ import {
   DialogContentText
 } from '@mui/material'
 
+import { usePlaylists } from '~/hooks'
+import { unfollowPlaylist } from '~/lib'
+import { Playlist } from '~/types'
+
 interface ConfirmUnfollowPlaylistProps {
-  isOpen: boolean
-  playlistName: string
-  handleClose: (hasConfirmation?: boolean) => void
+  playlist: Playlist
 }
 
-export const ConfirmUnfollowPlaylist = memo(
-  ({ isOpen, handleClose, playlistName }: ConfirmUnfollowPlaylistProps) => {
+export const ConfirmUnfollowPlaylist = forwardRef(
+  ({ playlist }: ConfirmUnfollowPlaylistProps, ref) => {
+    const [isOpen, setIsOpen] = useState(false)
+    const [{ token }] = useCookies(['token'])
+    const updatePlaylists = usePlaylists(({ fetch }) => fetch)
+
+    const handleOpen = () => setIsOpen(true)
+
+    const handleClose = useCallback(
+      async (hasConfirmation = false) => {
+        if (hasConfirmation) {
+          await unfollowPlaylist(playlist.id, token)
+          await updatePlaylists(token)
+        }
+
+        setIsOpen(false)
+      },
+      [token, playlist.id, updatePlaylists]
+    )
+
+    useImperativeHandle(
+      ref,
+      () => ({
+        handleOpen,
+        handleClose
+      }),
+      [handleClose]
+    )
+
     return (
       <Dialog
         open={isOpen}
@@ -29,7 +59,7 @@ export const ConfirmUnfollowPlaylist = memo(
             id="alert-dialog-description"
             sx={{ fontSize: '1.8rem' }}
           >
-            Deseja mesmo deixar de seguir a playlist: {playlistName}?
+            Deseja mesmo deixar de seguir a playlist: {playlist.name}?
           </DialogContentText>
         </DialogContent>
         <DialogActions>
